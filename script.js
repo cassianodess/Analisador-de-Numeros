@@ -27,7 +27,7 @@ function media(lista) {
 
 function adicionar() {
 
-    if ((num.value >= 1 && num.value <= 100) && !inLista(num.value, valores)) {
+    if (!inLista(num.value, valores)) {
 
         valores.push(Number(num.value))
 
@@ -46,24 +46,26 @@ function adicionar() {
     num.value = ""
     num.focus()
 
+
 }
 
 function finalizar() {
+
+
     if (valores.length == 0) {
         alert(`Adicione valores antes de finalizar!`)
     } else {
+        valores.sort(function (a, b) { return a - b })
         let total = valores.length
         let menor = valores[0]
-        let maior = valores[(valores.length) - 1]
+        let maior = valores[total - 1]
         let média = media(valores)
 
         resp.innerHTML = ""
         resp.innerHTML += `<p>Total de números cadastrados: ${total}</p>`
-        resp.innerHTML += `<p>O maior valor é ${maior}</p>`
         resp.innerHTML += `<p>O menor valor é ${menor}</p>`
-
+        resp.innerHTML += `<p>O maior valor é ${maior}</p>`
         resp.innerHTML += `<p>Média: ${média}</p>`
 
     }
-
 }
